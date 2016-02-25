@@ -97,7 +97,7 @@ public class MainActivity extends VoiceActivity {
     protected void setCommandPool(){
         createRecognizer(MainActivity.this);
         commandPool = new HashMap<String,String[]>();
-        String start[] = {"스타트","스타뜨","스타토","스탠다드","스타","스타츠","스타킹","스타스",
+        String start[] = {"스타트","스타뜨","스타토","스탠다드","스타","스타츠","스타킹","스타스","스카치",
                 "스타추","스태츄","스태추","스탸트","스탸츠","코타츠","코다츠","스탓","스카트","스커트","카트",
                 "시작","지작","이작","시쟉","지쟉","이쟉","시샵","씨샵","지샵","시샥","시삭","치사","시자",
                 "시장","지장","시잡","씨잡","씨작","씨장","게임시작","게임","대전","시작해"};
