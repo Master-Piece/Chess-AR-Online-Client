@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\frebern\AndroidStudioProjects\Chess AR Online Client\app\libs\unity-classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b3c0381885c353a7cacf0205d9b0272d288b9c93">
+        <dex dex="C:\Users\frebern\AndroidStudioProjects\Chess AR Online Client\app\build\intermediates\pre-dexed\debug\unity-classes_75639ec768c71450677440ce00d5f6aef5710b4e.jar" />
+    </item>
+
+</items>

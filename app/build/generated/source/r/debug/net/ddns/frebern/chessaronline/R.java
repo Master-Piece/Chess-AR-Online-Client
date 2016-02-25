@@ -23,7 +23,8 @@ public final class R {
     }
     public static final class id {
         public static final int credit=0x7f070004;
-        public static final int imgCamera=0x7f070012;
+        public static final int imageView=0x7f070011;
+        public static final int imgCamera=0x7f070013;
         public static final int optCancel=0x7f070010;
         public static final int optCard=0x7f07000c;
         public static final int optFull=0x7f07000d;
@@ -32,9 +33,9 @@ public final class R {
         public static final int optVoiceConfirm=0x7f07000e;
         public static final int option=0x7f070003;
         public static final int quit=0x7f070005;
-        public static final int recogCancel=0x7f070013;
-        public static final int recogConfirm=0x7f070014;
-        public static final int recogLayout=0x7f070011;
+        public static final int recogCancel=0x7f070014;
+        public static final int recogConfirm=0x7f070015;
+        public static final int recogLayout=0x7f070012;
         public static final int srLabel=0x7f070000;
         public static final int srVoice=0x7f070001;
         public static final int start=0x7f070002;
@@ -48,7 +49,8 @@ public final class R {
         public static final int activity_main=0x7f030000;
         public static final int activity_splash=0x7f030001;
         public static final int dialog_option=0x7f030002;
-        public static final int layout_recog=0x7f030003;
+        public static final int layout_matchmaking=0x7f030003;
+        public static final int layout_recog=0x7f030004;
     }
     public static final class string {
         public static final int app_name=0x7f060000;

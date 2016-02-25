@@ -42,34 +42,24 @@ public class UnityPlayerActivity extends VoiceActivity
     private PanelHandler _handler;
     private TimerThread _timer;
 
+    private void removeCurrentUI(){
+        ((ViewGroup) layout.getParent()).removeView(layout);
+    }
 
-
-    @Override protected void onCreate(Bundle savedInstanceState)
-    {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        super.onCreate(savedInstanceState);
-
-        win = getWindow();
-        win.setFormat(PixelFormat.RGBX_8888); // <--- This makes xperia play happy
-
-        mUnityPlayer = new UnityPlayer(this);
-        win.setContentView(mUnityPlayer);
-        mUnityPlayer.requestFocus();
-         /* 별도의 액티비티가 UnityPlayerActivity를 상속받아 아래의 내용을 수행하려 시도해보았으나,
-         * 어째서인지 전혀 먹히지 않았기 때문에 어쩔 수 없이
-         * UnityPlayerActivity에서 GameActivity가 해야 할 일을 모두 수행하게 했다. */
-
-        //AR Marker Recognize Layout Overlapping
+    private void setUI(int layoutId){
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layout = (LinearLayout) inflater.inflate(R.layout.layout_recog,null);
+        layout = (LinearLayout) inflater.inflate(layoutId,null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         win.addContentView(layout, layoutParams);
+    }
 
+    private void changeUI(int layoutId){
+        removeCurrentUI();
+        setUI(layoutId);
+    }
 
-
-
+    private void initRecogLayout(){
         /* recogPanel 버튼 이벤트 연결 */
-
         _recogCancel = (Button) findViewById(R.id.recogCancel);
         _recogConfirm = (Button) findViewById(R.id.recogConfirm);
 
@@ -84,11 +74,9 @@ public class UnityPlayerActivity extends VoiceActivity
         _recogConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ViewGroup) layout.getParent()).removeView(layout);
+                changeUI(R.layout.layout_matchmaking);
             }
         });
-
-        /* 음성인식 UI, 이벤트 연결, 세팅*/
 
         _srLabel = (TextView) findViewById(R.id.srLabel);
         _srLabel.setOnClickListener(new View.OnClickListener() {
@@ -100,13 +88,33 @@ public class UnityPlayerActivity extends VoiceActivity
 
         _srVoice = (TextView) findViewById(R.id.srVoice);
 
+        _handler = new PanelHandler();
+        new TimerThread().start();
+    }
+
+    private void initVoiceRecognizer(){
         createRecognizer(UnityPlayerActivity.this);
         setCommandPool();
         setCommandSets();
         changeCommandSet(_markerRecogCommands);
+    }
 
-        _handler = new PanelHandler();
-        new TimerThread().start();
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.onCreate(savedInstanceState);
+
+        win = getWindow();
+        win.setFormat(PixelFormat.RGBX_8888); // <--- This makes xperia play happy
+
+        mUnityPlayer = new UnityPlayer(this);
+        win.setContentView(mUnityPlayer);
+        mUnityPlayer.requestFocus();
+
+        setUI(R.layout.layout_recog);
+        initRecogLayout();
+        initVoiceRecognizer();
 
     }
 
