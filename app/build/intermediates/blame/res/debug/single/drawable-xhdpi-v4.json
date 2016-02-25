@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online6\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\splash.png",
+        "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online6\\app\\src\\main\\res\\drawable-xhdpi\\splash.png"
+    },
+    {
+        "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online6\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\app_banner.png",
+        "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online6\\app\\src\\main\\res\\drawable-xhdpi\\app_banner.png"
+    },
+    {
+        "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online6\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\border2.xml",
+        "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online6\\app\\src\\main\\res\\drawable-xhdpi\\border2.xml"
+    }
+]
