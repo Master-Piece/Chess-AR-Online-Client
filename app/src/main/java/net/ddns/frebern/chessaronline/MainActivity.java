@@ -78,7 +78,7 @@ public class MainActivity extends VoiceActivity {
 
         _srLabel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public synchronized void onClick(View v) {
                 MainActivity.this.recognize();
             }
         });

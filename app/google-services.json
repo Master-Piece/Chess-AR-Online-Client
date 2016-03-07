@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_id": "chess-ar-online-client",
+    "project_number": "746574706961",
+    "name": "Chess AR Online Client"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746574706961:android:3f5aebf06a6e2791",
+        "client_id": "android:net.ddns.frebern.chessaronline",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "net.ddns.frebern.chessaronline",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 2,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

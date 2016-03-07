@@ -144,7 +144,9 @@ public abstract class VoiceActivity extends ASR {
                 @Override
                 public void run() {
                     try {
-                        listen(languageModel, numberRecoResults); //Start listening
+                        synchronized (this) {
+                            listen(languageModel, numberRecoResults); //Start listening
+                        }
                     } catch (Exception e) {
                         String err = "F:ASR could not be started: invalid params";
                         Log.e(LOGTAG, "F:"+e.getMessage());

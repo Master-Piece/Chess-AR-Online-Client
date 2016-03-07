@@ -2,23 +2,31 @@ package net.ddns.frebern.chessaronline;
 
 import com.unity3d.player.*;
 
+import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,6 +49,28 @@ public class UnityPlayerActivity extends VoiceActivity
 
     private PanelHandler _handler;
     private TimerThread _timer;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.onCreate(savedInstanceState);
+
+        win = getWindow();
+        win.setFormat(PixelFormat.RGBX_8888); // <--- This makes xperia play happy
+
+        mUnityPlayer = new UnityPlayer(this);
+        win.setContentView(mUnityPlayer);
+        mUnityPlayer.requestFocus();
+
+        setUI(R.layout.layout_recog);
+        initRecogLayout();
+        initVoiceRecognizer();
+        registerGcmReceiver();
+
+    }
+
 
     private void removeCurrentUI(){
         ((ViewGroup) layout.getParent()).removeView(layout);
@@ -66,6 +96,7 @@ public class UnityPlayerActivity extends VoiceActivity
         _recogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                unregisterReceiver(gcmReceiver);
                 mUnityPlayer.quit();
                 //System.exit(0);을 해도 됨.
                 //finish(); // finish 호출시 SIGNAL 9 (Kill)로 인해 어플리케이션 전체가 종료됨.
@@ -74,7 +105,40 @@ public class UnityPlayerActivity extends VoiceActivity
         _recogConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeUI(R.layout.layout_matchmaking);
+
+
+
+                new AsyncTask<Void,Void,String>(){
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        changeUI(R.layout.layout_matchmaking);
+                    }
+
+                    @Override
+                    protected String doInBackground(Void... params) {
+
+                        String address = "http://www.kostrian.xyz/post_return.php";
+                        ContentValues values = new ContentValues();
+                        values.put("TYPE","MMR");
+                        values.put("ID",getString(R.string.gcm_defaultSenderId));
+                        values.put("NICK", "frebern");
+                        String response = HttpPostTask.getInstance().sendRequest(address,values);
+                        Log.e("HTTP", response);
+                        return response;
+
+                    }
+
+                    @Override
+                    protected void onPostExecute(String response) {
+                        super.onPostExecute(response);
+                        Log.e("HTTPRESPONSE",response);
+                    }
+                }.execute();
+
+
+
             }
         });
 
@@ -99,24 +163,7 @@ public class UnityPlayerActivity extends VoiceActivity
         changeCommandSet(_markerRecogCommands);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        super.onCreate(savedInstanceState);
 
-        win = getWindow();
-        win.setFormat(PixelFormat.RGBX_8888); // <--- This makes xperia play happy
-
-        mUnityPlayer = new UnityPlayer(this);
-        win.setContentView(mUnityPlayer);
-        mUnityPlayer.requestFocus();
-
-        setUI(R.layout.layout_recog);
-        initRecogLayout();
-        initVoiceRecognizer();
-
-    }
 
 
 
@@ -200,6 +247,21 @@ public class UnityPlayerActivity extends VoiceActivity
     }
 
 
+    private static final String ACTION_STRING_SERVICE = "ToService";
+    private static final String ACTION_STRING_ACTIVITY = "ToActivity";
+
+    private BroadcastReceiver gcmReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(getApplicationContext(),intent.getStringExtra("msg"),Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private void registerGcmReceiver(){
+        IntentFilter intentFilter = new IntentFilter(ACTION_STRING_ACTIVITY);
+        registerReceiver(gcmReceiver, intentFilter);
+        startService(new Intent(this,CustomGcmListenerService.class));
+    }
 
 
 
@@ -216,6 +278,7 @@ public class UnityPlayerActivity extends VoiceActivity
     // Quit Unity
 	@Override protected void onDestroy ()
 	{
+        unregisterReceiver(gcmReceiver);
 		mUnityPlayer.quit();
 		super.onDestroy();
 	}
