@@ -43,7 +43,9 @@ public class MainActivity extends VoiceActivity {
         _start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, UnityPlayerActivity.class));
+                Intent toUnity = new Intent(MainActivity.this, UnityPlayerActivity.class);
+                toUnity.putExtra("GCM_TOKEN",getIntent().getStringExtra("GCM_TOKEN"));
+                startActivity(toUnity);
             }
         });
 

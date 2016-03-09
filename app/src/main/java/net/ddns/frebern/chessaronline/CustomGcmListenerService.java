@@ -16,14 +16,9 @@ public class CustomGcmListenerService extends GcmListenerService {
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
 
-        if (from.startsWith("/topics/")) {
-            // message received from some topic.
-        } else {
-            // normal downstream message.
-        }
         Intent intent = new Intent(this,UnityPlayerActivity.class);
-        intent.putExtra("from",from);
-        intent.putExtra("msg",message);
+        intent.putExtra("FROM",from);
+        intent.putExtra("MSG",message);
         sendBroadcast(intent);
 
     }

@@ -53,15 +53,37 @@ public class HttpPostTask {
                 stringBuilder.append("&");
 
             try {
-                stringBuilder.append(URLEncoder.encode(key, "UTF-8"));
+                stringBuilder.append(URLEncoder.encode(key, "EUC-KR"));
                 stringBuilder.append("=");
-                stringBuilder.append(URLEncoder.encode(params.getAsString(key), "UTF-8"));
+                stringBuilder.append(URLEncoder.encode(params.getAsString(key), "EUC-KR"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         }
 
         return stringBuilder.toString();
+    }
+
+    private String getJson(ContentValues params){
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+        for (String key : params.keySet())
+        {
+            if (first)
+                first = false;
+            else
+                stringBuilder.append(",");
+
+            try {
+                stringBuilder.append(URLEncoder.encode(key, "EUC-KR"));
+                stringBuilder.append(":");
+                stringBuilder.append(URLEncoder.encode(params.getAsString(key), "EUC-KR"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "{"+stringBuilder.toString()+"}";
     }
 
 
@@ -72,7 +94,7 @@ public class HttpPostTask {
 
             String params = getURLQuery(values);
 
-            Log.e("HTTP","1");
+            Log.e("HTTP","params:"+params);
             URL url = new URL(address);
             Log.e("HTTP",address);
             conn = (HttpURLConnection)url.openConnection();
@@ -82,29 +104,34 @@ public class HttpPostTask {
             conn.setDoInput(true);
             conn.setDoOutput(true);
             Log.e("HTTP", "5");
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Type", "application/json");
             Log.e("HTTP", "6");
 
             OutputStream os = conn.getOutputStream();
-            Log.e("HTTP","7");
+            Log.e("HTTP", "7");
             os.write(params.getBytes("euc-kr"));
             os.flush();
             os.close();
             Log.e("HTTP", "8");
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"EUC-KR"),conn.getContentLength());
-            Log.e("HTTP","9");
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "euc-kr"), conn.getContentLength());
+            Log.e("HTTP", "9");
             String buf;
-            while((buf=br.readLine())!=null)
-                response+=buf;
+            while ((buf = br.readLine()) != null)
+                response += buf;
 
         } catch (Exception e) {
             Log.e("HTTP",e.toString());
+            response = "ERROR";
             e.printStackTrace();
         }
         finally {
+            Log.e("HTTP","FINALLY");
             conn.disconnect();
-            return response;
         }
+        Log.e("HTTP","END");
+        return response;
+
     }
 
 }

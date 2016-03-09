@@ -52,6 +52,30 @@
         android:isGame="true"
         android:label="@string/app_name"
         android:theme="@style/UnityThemeSelector" >
+        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="net.ddns.frebern.chessaronline" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="net.ddns.frebern.chessaronline.GcmRegistrationIntentService"
+            android:exported="false" >
+        </service>
+        <service
+            android:name="net.ddns.frebern.chessaronline.CustomGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
         <service
             android:name="net.ddns.frebern.chessaronline.GcmInstanceIDListenerService"
             android:exported="false" >

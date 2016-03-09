@@ -47,13 +47,16 @@ public class UnityPlayerActivity extends VoiceActivity
     //AR Recognize Context.
     private ArrayList<String> _markerRecogCommands;
 
-    private PanelHandler _handler;
-    private TimerThread _timer;
+
+    //GCM
+    private String gcmToken;
+    private AsyncTask<Void,Void,String> gcmTask;
+    private BroadcastReceiver gcmReceiver;
+    private boolean isReceiverRegistered;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
@@ -67,10 +70,48 @@ public class UnityPlayerActivity extends VoiceActivity
         setUI(R.layout.layout_recog);
         initRecogLayout();
         initVoiceRecognizer();
-        registerGcmReceiver();
+        registerGCMReceiver();
 
     }
 
+    private void registerGCMReceiver() {
+        Intent fromMain = getIntent();
+        gcmToken = fromMain.getStringExtra("GCM_TOKEN");
+        gcmTask = new AsyncTask<Void,Void,String>(){
+            @Override
+            protected String doInBackground(Void... params) {
+
+                String address = "http://www.kostrian.xyz/post_return.php";
+                ContentValues values = new ContentValues();
+                values.put("type","MMR");
+                values.put("id",gcmToken);
+                values.put("nick", "frebern");
+                String response = HttpPostTask.getInstance().sendRequest(address,values);
+                Log.e("HTTP", response);
+                return response;
+            }
+        };
+
+        gcmReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.e("GCM_PUSH", "onReceive");
+                String from = intent.getStringExtra("FROM");
+                String msg = intent.getStringExtra("MSG");
+                Toast.makeText(UnityPlayerActivity.this,from+" "+msg,Toast.LENGTH_LONG).show();
+            }
+        };
+
+        registerReceiver();
+
+    }
+
+    private void registerReceiver(){
+        if(!isReceiverRegistered) {
+            registerReceiver(gcmReceiver,new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+            isReceiverRegistered = true;
+        }
+    }
 
     private void removeCurrentUI(){
         ((ViewGroup) layout.getParent()).removeView(layout);
@@ -96,7 +137,6 @@ public class UnityPlayerActivity extends VoiceActivity
         _recogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unregisterReceiver(gcmReceiver);
                 mUnityPlayer.quit();
                 //System.exit(0);을 해도 됨.
                 //finish(); // finish 호출시 SIGNAL 9 (Kill)로 인해 어플리케이션 전체가 종료됨.
@@ -106,37 +146,9 @@ public class UnityPlayerActivity extends VoiceActivity
             @Override
             public void onClick(View v) {
 
+                changeUI(R.layout.layout_matchmaking);
 
-
-                new AsyncTask<Void,Void,String>(){
-
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                        changeUI(R.layout.layout_matchmaking);
-                    }
-
-                    @Override
-                    protected String doInBackground(Void... params) {
-
-                        String address = "http://www.kostrian.xyz/post_return.php";
-                        ContentValues values = new ContentValues();
-                        values.put("TYPE","MMR");
-                        values.put("ID",getString(R.string.gcm_defaultSenderId));
-                        values.put("NICK", "frebern");
-                        String response = HttpPostTask.getInstance().sendRequest(address,values);
-                        Log.e("HTTP", response);
-                        return response;
-
-                    }
-
-                    @Override
-                    protected void onPostExecute(String response) {
-                        super.onPostExecute(response);
-                        Log.e("HTTPRESPONSE",response);
-                    }
-                }.execute();
-
+                gcmTask.execute();
 
 
             }
@@ -152,8 +164,8 @@ public class UnityPlayerActivity extends VoiceActivity
 
         _srVoice = (TextView) findViewById(R.id.srVoice);
 
-        _handler = new PanelHandler();
-        new TimerThread().start();
+        panelChange(CHANGE_TO_RECOG_PANEL,3000);
+
     }
 
     private void initVoiceRecognizer(){
@@ -162,9 +174,6 @@ public class UnityPlayerActivity extends VoiceActivity
         setCommandSets();
         changeCommandSet(_markerRecogCommands);
     }
-
-
-
 
 
     private void setCommandSets(){
@@ -176,6 +185,7 @@ public class UnityPlayerActivity extends VoiceActivity
     private void changeCommandSet(ArrayList<String> commandSet){
         _commandSet = commandSet;
     }
+
 
     /* Voice Activity Override Methods.*/
 
@@ -191,7 +201,6 @@ public class UnityPlayerActivity extends VoiceActivity
         commandPool.put("Cancel", cancel);
         commandPool.put("Confirm", confirm);
     }
-
     @Override
     protected String filtering(String str) {
         for(String key:_commandSet)
@@ -199,7 +208,6 @@ public class UnityPlayerActivity extends VoiceActivity
                 return key;
         return str;
     }
-
     @Override
     protected void setVoiceCommand(String filteredResult) {
 
@@ -216,59 +224,26 @@ public class UnityPlayerActivity extends VoiceActivity
     }
 
     private static final int CHANGE_TO_RECOG_PANEL=0;
-
-    class PanelHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case CHANGE_TO_RECOG_PANEL:
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            layout.setVisibility(View.VISIBLE);
-                        }
-                    });
-                    break;
+    /* 패널 교체를 위한 핸들러.
+     * 내부적으로 innerclass를 사용하기 때문에 클래스의 attribute의 layout에 종속적이다.*/
+    private void panelChange(int code,int msec){
+        new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case CHANGE_TO_RECOG_PANEL:
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                layout.setVisibility(View.VISIBLE);
+                            }
+                        });
+                        break;
+                }
             }
-        }
+        }.sendEmptyMessageDelayed(code,msec);
     }
-    class TimerThread extends Thread implements Runnable{
-        @Override
-        public void run() {
-            super.run();
-            try {
-                Thread.sleep(2400);
-                _handler.sendEmptyMessage(CHANGE_TO_RECOG_PANEL);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    private static final String ACTION_STRING_SERVICE = "ToService";
-    private static final String ACTION_STRING_ACTIVITY = "ToActivity";
-
-    private BroadcastReceiver gcmReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Toast.makeText(getApplicationContext(),intent.getStringExtra("msg"),Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void registerGcmReceiver(){
-        IntentFilter intentFilter = new IntentFilter(ACTION_STRING_ACTIVITY);
-        registerReceiver(gcmReceiver, intentFilter);
-        startService(new Intent(this,CustomGcmListenerService.class));
-    }
-
-
-
-
-
-
-
 
 
 
@@ -276,46 +251,47 @@ public class UnityPlayerActivity extends VoiceActivity
 
 
     // Quit Unity
-	@Override protected void onDestroy ()
-	{
-        unregisterReceiver(gcmReceiver);
+	@Override
+    protected void onDestroy () {
+
 		mUnityPlayer.quit();
 		super.onDestroy();
 	}
 
 	// Pause Unity
-	@Override protected void onPause()
-	{
+	@Override protected void onPause() {
+        unregisterReceiver(gcmReceiver);
+        isReceiverRegistered = false;
 		super.onPause();
 		mUnityPlayer.pause();
 	}
 
-
     // Resume Unity
-	@Override protected void onResume()
-	{
+	@Override protected void onResume() {
 		super.onResume();
-		mUnityPlayer.resume();
+        mUnityPlayer.resume();
+        registerReceiver();
 	}
 
+
+
+    /* 아래는 유니티플레이어액티비티가 Generate 된 코드 그대로임. */
+
 	// This ensures the layout will be correct.
-	@Override public void onConfigurationChanged(Configuration newConfig)
-	{
+	@Override public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mUnityPlayer.configurationChanged(newConfig);
 	}
 
 	// Notify Unity of the focus change.
-	@Override public void onWindowFocusChanged(boolean hasFocus)
-	{
+	@Override public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
 		mUnityPlayer.windowFocusChanged(hasFocus);
 	}
 
 	// For some reason the multiple keyevent type is not supported by the ndk.
 	// Force event injection by overriding dispatchKeyEvent().
-	@Override public boolean dispatchKeyEvent(KeyEvent event)
-	{
+	@Override public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_MULTIPLE)
 			return mUnityPlayer.injectEvent(event);
 		return super.dispatchKeyEvent(event);

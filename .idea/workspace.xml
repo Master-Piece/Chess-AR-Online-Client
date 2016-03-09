@@ -20,7 +20,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="HTTP" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="GCM|HTTP" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -57,11 +57,8 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="81" column="39" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
-              <folding>
-                <element signature="e#2531#2532#0" expanded="true" />
-                <element signature="e#2592#2593#0" expanded="true" />
-              </folding>
+              <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,10 +66,26 @@
       <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/SplashActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="-17.733334">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1243#2376#0" expanded="true" />
+                <element signature="e#1702#2169#0" expanded="true" />
+                <element signature="e#2168#2169#0" expanded="true" />
+                <element signature="e#2375#2376#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuickstartPreferences.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/QuickstartPreferences.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#612#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,22 +94,8 @@
       <file leaf-file-name="GcmRegistrationIntentService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmRegistrationIntentService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#536#537#0" expanded="true" />
-                <element signature="e#563#564#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GcmInstanceIDListenerService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmInstanceIDListenerService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state vertical-scroll-proportion="-13.3">
+              <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,35 +106,54 @@
       <file leaf-file-name="UnityPlayerActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/UnityPlayerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="40" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+            <state vertical-scroll-proportion="3.1666667">
+              <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
               <folding>
-                <element signature="e#2084#2085#0" expanded="true" />
-                <element signature="e#2151#2152#0" expanded="true" />
-                <element signature="e#3283#4583#0" expanded="true" />
-                <element signature="e#4582#4583#0" expanded="true" />
-                <element signature="e#4681#4826#0" expanded="true" />
-                <element signature="e#4825#4826#0" expanded="true" />
+                <element signature="e#2307#2882#0" expanded="true" />
+                <element signature="e#2881#2882#0" expanded="true" />
+                <element signature="e#2907#3310#0" expanded="true" />
+                <element signature="e#3309#3310#0" expanded="true" />
+                <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="e#4453#4725#0" expanded="true" />
+                <element signature="e#4724#4725#0" expanded="true" />
+                <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="e#7138#7693#0" expanded="true" />
+                <element signature="e#7392#7618#0" expanded="true" />
+                <element signature="e#7617#7618#0" expanded="true" />
+                <element signature="e#7692#7693#0" expanded="true" />
+                <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+                <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <file leaf-file-name="GcmInstanceIDListenerService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmInstanceIDListenerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7587354">
-              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="26" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpPostTask.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HttpPostTask.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/HttpPostTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.06654991">
+              <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1006#1007#0" expanded="true" />
@@ -145,11 +163,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoiceActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/VoiceActivity.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="146" column="40" selection-start-line="146" selection-start-column="40" selection-end-line="146" selection-end-column="40" />
+              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -159,10 +177,8 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="48" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="48" />
-              <folding>
-                <element signature="e#2441#2459#0" expanded="true" />
-              </folding>
+              <caret line="100" column="68" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="68" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,7 +187,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/CustomGcmListenerService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2039,15 +2055,15 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/gcm/GCMListenerService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MyInstanceIDListenerService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/QuickstartPreferences.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/RegistrationIntentService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MyGcmListenerService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/VoiceActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/HttpGetTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmInstanceIDListenerService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmRegistrationIntentService.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/QuickstartPreferences.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmRegistrationIntentService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/CustomGcmListenerService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/UnityPlayerActivity.java" />
@@ -2087,21 +2103,41 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
+      <pane id="Scope" />
+      <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Chess AR Online Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Chess AR Online Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Chess AR Online Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Chess AR Online Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2142,57 +2178,23 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
+      <pane id="PackagesPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Chess AR Online Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2385,7 +2387,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2432,39 +2434,18 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="39" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
-          <folding>
-            <element signature="e#2531#2532#0" expanded="true" />
-            <element signature="e#2592#2593#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmRegistrationIntentService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2484,12 +2465,29 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="114" column="54" selection-start-line="114" selection-start-column="54" selection-end-line="114" selection-end-column="54" />
           <folding>
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#3283#4583#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4681#4826#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
+            <element signature="e#2307#2882#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2907#3310#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#4453#4725#0" expanded="true" />
+            <element signature="e#4724#4725#0" expanded="true" />
+            <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#7138#7693#0" expanded="true" />
+            <element signature="e#7392#7618#0" expanded="true" />
+            <element signature="e#7617#7618#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2518,9 +2516,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="44" selection-start-line="67" selection-start-column="44" selection-end-line="67" selection-end-column="44" />
-          <folding>
-            <element signature="e#2441#2459#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2538,10 +2534,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding>
-            <element signature="e#2531#2532#0" expanded="true" />
-            <element signature="e#2592#2593#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2561,12 +2554,29 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="165" column="49" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
           <folding>
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#3283#4583#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4681#4826#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
+            <element signature="e#2307#2882#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2907#3310#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#4453#4725#0" expanded="true" />
+            <element signature="e#4724#4725#0" expanded="true" />
+            <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#7138#7693#0" expanded="true" />
+            <element signature="e#7392#7618#0" expanded="true" />
+            <element signature="e#7617#7618#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2609,9 +2619,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
-          <folding>
-            <element signature="e#2441#2459#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2619,10 +2627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-          <folding>
-            <element signature="e#2531#2532#0" expanded="true" />
-            <element signature="e#2592#2593#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2657,12 +2662,29 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="165" column="49" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
           <folding>
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#3283#4583#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4681#4826#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
+            <element signature="e#2307#2882#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2907#3310#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#4453#4725#0" expanded="true" />
+            <element signature="e#4724#4725#0" expanded="true" />
+            <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#7138#7693#0" expanded="true" />
+            <element signature="e#7392#7618#0" expanded="true" />
+            <element signature="e#7617#7618#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2694,10 +2716,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-          <folding>
-            <element signature="e#2531#2532#0" expanded="true" />
-            <element signature="e#2592#2593#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2732,12 +2751,29 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#3283#4583#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4681#4826#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
+            <element signature="e#2307#2882#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2907#3310#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#4453#4725#0" expanded="true" />
+            <element signature="e#4724#4725#0" expanded="true" />
+            <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#7138#7693#0" expanded="true" />
+            <element signature="e#7392#7618#0" expanded="true" />
+            <element signature="e#7617#7618#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2757,10 +2793,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-          <folding>
-            <element signature="e#2531#2532#0" expanded="true" />
-            <element signature="e#2592#2593#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2795,12 +2828,29 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#3283#4583#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4681#4826#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
+            <element signature="e#2307#2882#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2907#3310#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#4453#4725#0" expanded="true" />
+            <element signature="e#4724#4725#0" expanded="true" />
+            <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#7138#7693#0" expanded="true" />
+            <element signature="e#7392#7618#0" expanded="true" />
+            <element signature="e#7617#7618#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2852,24 +2902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="62" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="39" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
-          <folding>
-            <element signature="e#2531#2532#0" expanded="true" />
-            <element signature="e#2592#2593#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/VoiceActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2878,42 +2910,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="62" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmInstanceIDListenerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmRegistrationIntentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/CustomGcmListenerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2923,45 +2945,104 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="48" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="48" />
+          <caret line="100" column="68" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/QuickstartPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
           <folding>
-            <element signature="e#2441#2459#0" expanded="true" />
+            <element signature="e#0#612#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/HttpPostTask.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/CustomGcmListenerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/GcmRegistrationIntentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.3">
+          <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.733334">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1243#2376#0" expanded="true" />
+            <element signature="e#1702#2169#0" expanded="true" />
+            <element signature="e#2168#2169#0" expanded="true" />
+            <element signature="e#2375#2376#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/UnityPlayerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="40" selection-start-line="128" selection-start-column="40" selection-end-line="128" selection-end-column="40" />
+        <state vertical-scroll-proportion="3.1666667">
+          <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
           <folding>
-            <element signature="e#2084#2085#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#3283#4583#0" expanded="true" />
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4681#4826#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
+            <element signature="e#2307#2882#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
+            <element signature="e#2907#3310#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+            <element signature="method#registerReceiver#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#changeUI#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#4453#4725#0" expanded="true" />
+            <element signature="e#4724#4725#0" expanded="true" />
+            <element signature="method#initVoiceRecognizer#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandSets#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setCommandPool#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#filtering#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#setVoiceCommand#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="e#7138#7693#0" expanded="true" />
+            <element signature="e#7392#7618#0" expanded="true" />
+            <element signature="e#7617#7618#0" expanded="true" />
+            <element signature="e#7692#7693#0" expanded="true" />
+            <element signature="method#onDestroy#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onResume#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onConfigurationChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#onWindowFocusChanged#0;class#UnityPlayerActivity#0" expanded="false" />
+            <element signature="method#dispatchKeyEvent#0;class#UnityPlayerActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/net/ddns/frebern/chessaronline/HttpPostTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7587354">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding />
+        <state vertical-scroll-proportion="0.06654991">
+          <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="e#1037#1038#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
