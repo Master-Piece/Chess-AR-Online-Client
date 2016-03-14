@@ -1,21 +1,27 @@
 package net.ddns.frebern.chessaronline;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
 
-import com.unity3d.player.UnityPlayer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class VoiceActivity extends ASR {
+public abstract class VoiceActivity extends ASR implements SensorEventListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Magnetic Sensor
+        _sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        registerMagneticBtn();
     }
 
     //DO NOT MODIFY BELOW ATTRIBUTES!!!
@@ -42,7 +48,7 @@ public abstract class VoiceActivity extends ASR {
     protected abstract String filtering(String str);
 
     /* recognize() 실행 중에 호출되는 메서드. */
-    protected abstract void setVoiceCommand(String result);
+    protected abstract void setVoiceCommandAction(String result);
 
 
     /* 이하는 음성인식 부분. 꼭 필요하지 않는 이상 건드리지 말 것 */
@@ -73,9 +79,12 @@ public abstract class VoiceActivity extends ASR {
             }
         }
 
+        //음성인식이 끝난 후 지점.
+
         //Adds information to log
         Log.d(LOGTAG, "D:Recognized Text : " + text);
-        setVoiceCommand(filtering(text));
+        setVoiceCommandAction(filtering(text));
+        recogLock=false;//음성인식 락해제.
         //stopListening();
     }
 
@@ -88,35 +97,39 @@ public abstract class VoiceActivity extends ASR {
                 errorMessage = "Audio recording error";
                 break;
             case SpeechRecognizer.ERROR_CLIENT:
-                errorMessage = "Client side error";
+                errorMessage = "죄송합니다.\n애플리케이션에 문제가 발생했습니다.";
                 break;
             case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
                 errorMessage = "Insufficient permissions";
                 break;
             case SpeechRecognizer.ERROR_NETWORK:
-                errorMessage = "Network related error";
+                errorMessage = "인터넷 연결상태를 확인해주세요.";
                 break;
             case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                errorMessage = "Network operation timeout";
+                errorMessage = "인터넷 연결상태를 확인해주세요.";
                 break;
             case SpeechRecognizer.ERROR_NO_MATCH:
-                errorMessage = "No recognition result matched";
+                errorMessage = "인식된 결과가 없습니다.";
                 break;
             case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
                 errorMessage = "음성 인식 중 입니다...";
                 break;
             case SpeechRecognizer.ERROR_SERVER:
-                errorMessage = "Server sends error status";
+                errorMessage = "죄송합니다.\n서버에 이상이 발생했습니다.";
                 break;
             case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                errorMessage = "No speech input";
+                errorMessage = "인식된 결과가 없습니다.";
                 break;
             default:
-                errorMessage = "ASR error";
+                errorMessage = "죄송합니다.\n애플리케이션에 문제가 발생했습니다.";
                 break;
         }
-        errorMessage = "ERROR("+errorCode+") : "+errorMessage;
-        setVoiceCommand(errorMessage);
+
+        //음성인식 중 에러 발생시 도착하는 지점.
+        //errorMessage = "ERROR("+errorCode+") : "+errorMessage;
+        setVoiceCommandAction("Error : "+errorMessage);
+        Log.e("ASR_ERR", errorMessage);
+        recogLock = false;
     }
     @Override
     public void processAsrReadyForSpeech() {
@@ -129,34 +142,97 @@ public abstract class VoiceActivity extends ASR {
     private void setRecognitionParams(){
         // Not need to implement
     }
+
+    private boolean recogLock = false;
     protected void recognize(){
         //Speech recognition does not currently work on simulated devices,
         //it the user is attempting to run the app in a simulated device
         //they will get a Toast
-        if ("generic".equals(Build.BRAND.toLowerCase())) {
-            String err = "E:ASR attempt on virtual device";
-            Log.e(LOGTAG, err);
-            setVoiceCommand(err);
-        } else {
+        if (!recogLock) { //음성인식 락 설정(recognize()를 동시에 여러번 호출해도 의미 없게끔)
 
-            setRecognitionParams(); //Read ASR parameters
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        synchronized (this) {
+            recogLock = true;
+            Log.e("ASR","IN THE LOCK");
+            if ("generic".equals(Build.BRAND.toLowerCase())) {
+                String err = "E:ASR attempt on virtual device";
+                Log.e(LOGTAG, err);
+                recogLock = false;
+                setVoiceCommandAction(err);
+            } else {
+
+                setRecognitionParams(); //Read ASR parameters
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
                             listen(languageModel, numberRecoResults); //Start listening
+                        } catch (Exception e) {
+                            String err = "F:ASR could not be started: invalid params";
+                            Log.e(LOGTAG, "F:" + e.getMessage());
+                            setVoiceCommandAction(e.getMessage());
+                            Log.e("ASR_ERR", e.getMessage());
+                            recogLock = false;
+                            e.printStackTrace();
                         }
-                    } catch (Exception e) {
-                        String err = "F:ASR could not be started: invalid params";
-                        Log.e(LOGTAG, "F:"+e.getMessage());
-                        setVoiceCommand(e.getMessage());
-                        e.printStackTrace();
                     }
-                }
-            });
-
+                });
+            }
         }
+
+    }
+
+    private SensorManager _sensorManager;
+    private int[] _del = {0,0,0};
+    private long _cnt =0;
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent){
+        if(sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
+            _cnt++;
+            if(_cnt>=250000) _cnt=25;
+            int i;
+            float diff=0;
+            for(i=0;i<3;i++){
+                diff=sensorEvent.values[i]- _del[i];
+                diff=diff<0?-diff:diff;
+                if(diff<3) break;
+            }
+            Log.e("MAGNETIC","diff:"+diff+" and "+sensorEvent.values[0]+"   "+sensorEvent.values[1]+"   "+sensorEvent.values[2]);
+            if(i==3 && _cnt >25 && !recogLock) {
+                _cnt=0;
+                Log.e("MAGNETIC","RECOGNIZE");
+                recognize();
+            }
+            for(i=0;i<3;i++) _del[i]=(int)sensorEvent.values[i];
+        }
+    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Ignoring this for now
+    }
+
+    private void registerMagneticBtn(){
+        _cnt =0;
+        _del[0]= _del[1]= _del[2]=0;
+        _sensorManager.registerListener(VoiceActivity.this, _sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),SensorManager.SENSOR_DELAY_NORMAL);
+    }
+    private void unregisterMagneticBtn(){
+        _sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        unregisterMagneticBtn();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterMagneticBtn();
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerMagneticBtn();
     }
 
 }

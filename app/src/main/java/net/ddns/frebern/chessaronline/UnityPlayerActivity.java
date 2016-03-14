@@ -20,13 +20,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,8 +38,6 @@ public class UnityPlayerActivity extends VoiceActivity
     private Button _recogCancel;
     private Button _recogConfirm;
 
-    private TextView _srLabel;
-    private TextView _srVoice;
     //컨텍스트에 따라 바뀌는 명령어 종류들을 담는 컬렉션.
     private ArrayList<String> _commandSet;
     //AR Recognize Context.
@@ -49,10 +45,10 @@ public class UnityPlayerActivity extends VoiceActivity
 
 
     //GCM
-    private String gcmToken;
-    private AsyncTask<Void,Void,String> gcmTask;
-    private BroadcastReceiver gcmReceiver;
-    private boolean isReceiverRegistered;
+    private String _gcmToken;
+    private AsyncTask<Void,Void,String> _gcmTask;
+    private BroadcastReceiver _gcmReceiver;
+    private boolean _isReceiverRegistered;
 
 
     @Override
@@ -65,28 +61,36 @@ public class UnityPlayerActivity extends VoiceActivity
 
         mUnityPlayer = new UnityPlayer(this);
         win.setContentView(mUnityPlayer);
+        win.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mUnityPlayer.requestFocus();
 
         setUI(R.layout.layout_recog);
-        initVUI();
         initRecogLayout();
         initVoiceRecognizer();
         registerGCMReceiver();
 
     }
 
+    /* 실질적으로 푸시 메시지 처리를 해야하는 부분. */
+    private void gcmPushHandler(String from, String msg){
+        Log.e("GCM_PUSH",from+" : "+msg);
+        Toast.makeText(UnityPlayerActivity.this,from+" "+msg,Toast.LENGTH_LONG).show();
+
+        /* GCM 푸시 메시지 처리! */
+
+    }
 
     /* GCM 푸시를 받기 위한 broadcast receiver 등록 및 메시지 핸들링*/
     private void registerGCMReceiver() {
         Intent fromMain = getIntent();
-        gcmToken = fromMain.getStringExtra("GCM_TOKEN");
-        gcmTask = new AsyncTask<Void,Void,String>(){
+        _gcmToken = fromMain.getStringExtra("GCM_TOKEN");
+        _gcmTask = new AsyncTask<Void,Void,String>(){
             @Override
             protected String doInBackground(Void... params) {
                 String address = "http://www.kostrian.xyz/post_return.php";
                 ContentValues values = new ContentValues();
                 values.put("type","MMR");
-                values.put("id", gcmToken);
+                values.put("_gcmToken", _gcmToken);
                 values.put("nick", "frebern");
                 String response = HttpPostTask.getInstance().sendRequest(address,values);
                 Log.e("HTTP", response);
@@ -94,22 +98,20 @@ public class UnityPlayerActivity extends VoiceActivity
             }
         };
 
-        /* 실질적으로 푸시 메시지 처리를 해야하는 부분. */
-        gcmReceiver = new BroadcastReceiver() {
+        _gcmReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.e("GCM_PUSH", "onReceive");
                 String from = intent.getStringExtra("FROM");
                 String msg = intent.getStringExtra("MSG");
-                Toast.makeText(UnityPlayerActivity.this,from+" "+msg,Toast.LENGTH_LONG).show();
+                gcmPushHandler(from, msg);
             }
         };
         registerReceiver();
     }
     private void registerReceiver(){
-        if(!isReceiverRegistered) {
-            registerReceiver(gcmReceiver,new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
-            isReceiverRegistered = true;
+        if(!_isReceiverRegistered) {
+            registerReceiver(_gcmReceiver,new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+            _isReceiverRegistered = true;
         }
     }
 
@@ -130,26 +132,6 @@ public class UnityPlayerActivity extends VoiceActivity
     }
 
 
-    /* 컨텍스트에 따른 UI초기화 메서드들 */
-
-    //상단에 레코그나이즈 레이아웃 초기화
-    private void initVUI(){
-        setUI(R.layout.layout_vui);
-        _srLabel = (TextView) findViewById(R.id.srLabel);
-        _srLabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recognize();
-            }
-        });
-        _srVoice = (TextView) findViewById(R.id.srVoice);
-    }
-    private void showVUI(boolean show){
-        int visibility = show?View.VISIBLE:View.GONE;
-        _srLabel.setVisibility(visibility);
-        _srVoice.setVisibility(visibility);
-    }
-
     //처음 AR마커 인식시의 레이아웃의 이벤트 초기화
     private void initRecogLayout(){
 
@@ -167,8 +149,7 @@ public class UnityPlayerActivity extends VoiceActivity
             @Override
             public void onClick(View v) {
                 changeUI(R.layout.layout_matchmaking);
-                showVUI(false);
-                gcmTask.execute();
+                _gcmTask.execute();
             }
         });
 
@@ -222,10 +203,7 @@ public class UnityPlayerActivity extends VoiceActivity
         return str;
     }
     @Override
-    protected void setVoiceCommand(String filteredResult) {
-
-        _srLabel.setText("Recognized Command : ");
-        _srVoice.setText(filteredResult);
+    protected void setVoiceCommandAction(String filteredResult) {
 
         if(filteredResult.equals("Cancel"))
             _recogCancel.callOnClick();
@@ -271,8 +249,8 @@ public class UnityPlayerActivity extends VoiceActivity
 	// Pause Unity
 	@Override
     protected void onPause() {
-    unregisterReceiver(gcmReceiver);
-    isReceiverRegistered = false;
+    unregisterReceiver(_gcmReceiver);
+    _isReceiverRegistered = false;
     super.onPause();
     mUnityPlayer.pause();
 }

@@ -64,6 +64,7 @@ public class HttpPostTask {
         return stringBuilder.toString();
     }
 
+    //혹시 몰라 만들었지만 안쓰일듯. 아니면 다른용도로 쓰던지...
     private String getJson(ContentValues params){
         StringBuilder stringBuilder = new StringBuilder();
         boolean first = true;
@@ -104,7 +105,7 @@ public class HttpPostTask {
             conn.setDoInput(true);
             conn.setDoOutput(true);
             Log.e("HTTP", "5");
-            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             Log.e("HTTP", "6");
 
             OutputStream os = conn.getOutputStream();

@@ -85,7 +85,7 @@ public class OptionDialog extends Dialog {
         }
 
         @Override
-        protected void setVoiceCommand(String filteredResult) {
+        protected void setVoiceCommandAction(String filteredResult) {
 
             Log.e("ASROption", filteredResult);
             _srLabel.setText("Recognized Command : ");

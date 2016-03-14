@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ public class MainActivity extends VoiceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setMenuButtons();
         MainActivity.this.setCommandPool();
     }
@@ -78,13 +80,6 @@ public class MainActivity extends VoiceActivity {
             }
         });
 
-        _srLabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public synchronized void onClick(View v) {
-                MainActivity.this.recognize();
-            }
-        });
-
     }
 
     @Override
@@ -129,7 +124,7 @@ public class MainActivity extends VoiceActivity {
     }
 
     @Override
-    protected void setVoiceCommand(String filteredResult) {
+    protected void setVoiceCommandAction(String filteredResult) {
         Log.e("ASR","Set Voice Command");
         _srLabel.setText("Recognized Command : ");
         _srVoice.setText(filteredResult);
