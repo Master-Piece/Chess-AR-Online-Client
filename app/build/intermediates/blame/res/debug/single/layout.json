@@ -64,6 +64,10 @@
         "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\notification_media_action.xml"
     },
     {
+        "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_vui.xml",
+        "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\src\\main\\res\\layout\\layout_vui.xml"
+    },
+    {
         "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
         "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_screen_simple.xml"
     },
@@ -114,6 +118,10 @@
     {
         "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_myturn.xml",
+        "source": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\src\\main\\res\\layout\\layout_myturn.xml"
     },
     {
         "merged": "C:\\Users\\frebern\\AndroidStudioProjects\\Chess AR Online Client\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout_recog.xml",

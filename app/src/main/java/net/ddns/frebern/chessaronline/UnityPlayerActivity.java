@@ -68,23 +68,25 @@ public class UnityPlayerActivity extends VoiceActivity
         mUnityPlayer.requestFocus();
 
         setUI(R.layout.layout_recog);
+        initVUI();
         initRecogLayout();
         initVoiceRecognizer();
         registerGCMReceiver();
 
     }
 
+
+    /* GCM 푸시를 받기 위한 broadcast receiver 등록 및 메시지 핸들링*/
     private void registerGCMReceiver() {
         Intent fromMain = getIntent();
         gcmToken = fromMain.getStringExtra("GCM_TOKEN");
         gcmTask = new AsyncTask<Void,Void,String>(){
             @Override
             protected String doInBackground(Void... params) {
-
                 String address = "http://www.kostrian.xyz/post_return.php";
                 ContentValues values = new ContentValues();
                 values.put("type","MMR");
-                values.put("id",gcmToken);
+                values.put("id", gcmToken);
                 values.put("nick", "frebern");
                 String response = HttpPostTask.getInstance().sendRequest(address,values);
                 Log.e("HTTP", response);
@@ -92,6 +94,7 @@ public class UnityPlayerActivity extends VoiceActivity
             }
         };
 
+        /* 실질적으로 푸시 메시지 처리를 해야하는 부분. */
         gcmReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -101,11 +104,8 @@ public class UnityPlayerActivity extends VoiceActivity
                 Toast.makeText(UnityPlayerActivity.this,from+" "+msg,Toast.LENGTH_LONG).show();
             }
         };
-
         registerReceiver();
-
     }
-
     private void registerReceiver(){
         if(!isReceiverRegistered) {
             registerReceiver(gcmReceiver,new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
@@ -113,47 +113,28 @@ public class UnityPlayerActivity extends VoiceActivity
         }
     }
 
-    private void removeCurrentUI(){
-        ((ViewGroup) layout.getParent()).removeView(layout);
-    }
 
+    /* UI Setting */
     private void setUI(int layoutId){
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layout = (LinearLayout) inflater.inflate(layoutId,null);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         win.addContentView(layout, layoutParams);
     }
-
+    private void removeCurrentUI(){
+        ((ViewGroup) layout.getParent()).removeView(layout);
+    }
     private void changeUI(int layoutId){
         removeCurrentUI();
         setUI(layoutId);
     }
 
-    private void initRecogLayout(){
-        /* recogPanel 버튼 이벤트 연결 */
-        _recogCancel = (Button) findViewById(R.id.recogCancel);
-        _recogConfirm = (Button) findViewById(R.id.recogConfirm);
 
-        _recogCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mUnityPlayer.quit();
-                //System.exit(0);을 해도 됨.
-                //finish(); // finish 호출시 SIGNAL 9 (Kill)로 인해 어플리케이션 전체가 종료됨.
-            }
-        });
-        _recogConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    /* 컨텍스트에 따른 UI초기화 메서드들 */
 
-                changeUI(R.layout.layout_matchmaking);
-
-                gcmTask.execute();
-
-
-            }
-        });
-
+    //상단에 레코그나이즈 레이아웃 초기화
+    private void initVUI(){
+        setUI(R.layout.layout_vui);
         _srLabel = (TextView) findViewById(R.id.srLabel);
         _srLabel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,20 +142,46 @@ public class UnityPlayerActivity extends VoiceActivity
                 recognize();
             }
         });
-
         _srVoice = (TextView) findViewById(R.id.srVoice);
+    }
+    private void showVUI(boolean show){
+        int visibility = show?View.VISIBLE:View.GONE;
+        _srLabel.setVisibility(visibility);
+        _srVoice.setVisibility(visibility);
+    }
 
-        panelChange(CHANGE_TO_RECOG_PANEL,3000);
+    //처음 AR마커 인식시의 레이아웃의 이벤트 초기화
+    private void initRecogLayout(){
+
+        _recogCancel = (Button) findViewById(R.id.recogCancel);
+        _recogConfirm = (Button) findViewById(R.id.recogConfirm);
+
+        _recogCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mUnityPlayer.quit();
+            }
+        });
+        //Confirm버튼 이벤트연결 -> Matchmaking UI로 변경.
+        _recogConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeUI(R.layout.layout_matchmaking);
+                showVUI(false);
+                gcmTask.execute();
+            }
+        });
+
+        panelChange(CHANGE_TO_RECOG_PANEL, 3000);
+    }
+    //매치메이킹 레이아웃은 별도의 이벤트 연결은 필요하지 않음.
+
+    //메이메이킹이 성사된 후의 레이아웃 이벤트 초기화
+    private void initMyTurnLayout(){
 
     }
 
-    private void initVoiceRecognizer(){
-        createRecognizer(UnityPlayerActivity.this);
-        setCommandPool();
-        setCommandSets();
-        changeCommandSet(_markerRecogCommands);
-    }
-
+    /* 아는 음성인식 관련 명령풀 및 레코그나이저 초기화 부분. */
 
     private void setCommandSets(){
         _markerRecogCommands = new ArrayList<String>();
@@ -186,9 +193,15 @@ public class UnityPlayerActivity extends VoiceActivity
         _commandSet = commandSet;
     }
 
+    //음성인식 명령풀 및 레코그나이저 초기화
+    private void initVoiceRecognizer(){
+        createRecognizer(UnityPlayerActivity.this);
+        setCommandPool();
+        setCommandSets();
+        changeCommandSet(_markerRecogCommands);
+    }
 
     /* Voice Activity Override Methods.*/
-
     @Override
     protected void setCommandPool(){
         commandPool = new HashMap<String,String[]>();
@@ -248,8 +261,6 @@ public class UnityPlayerActivity extends VoiceActivity
 
 
 
-
-
     // Quit Unity
 	@Override
     protected void onDestroy () {
@@ -257,22 +268,20 @@ public class UnityPlayerActivity extends VoiceActivity
 		mUnityPlayer.quit();
 		super.onDestroy();
 	}
-
 	// Pause Unity
-	@Override protected void onPause() {
-        unregisterReceiver(gcmReceiver);
-        isReceiverRegistered = false;
-		super.onPause();
-		mUnityPlayer.pause();
-	}
-
+	@Override
+    protected void onPause() {
+    unregisterReceiver(gcmReceiver);
+    isReceiverRegistered = false;
+    super.onPause();
+    mUnityPlayer.pause();
+}
     // Resume Unity
 	@Override protected void onResume() {
 		super.onResume();
         mUnityPlayer.resume();
         registerReceiver();
 	}
-
 
 
     /* 아래는 유니티플레이어액티비티가 Generate 된 코드 그대로임. */
